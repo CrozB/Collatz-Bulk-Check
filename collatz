@@ -1,0 +1,56 @@
+#Python Code for Checking Several Billions of Numbers for the Collatz Conjecture
+
+import time
+
+t0 = time.time()
+
+start_num = int(input("Start Number: "))
+
+end_num = int(input("End Number: "))
+
+increment = 128
+
+start_num = (start_num - start_num % 128) + 27
+
+scale = 10000
+
+start_range = range(start_num, end_num+2, increment*scale)
+
+a = start_num // (scale*100)
+
+for z in start_range:
+
+    intrmdt_range = range(z, z + increment * (scale-1), increment)
+
+    millions = z // (scale*100)
+
+    #for loop for checking all numbers in range
+    for i in intrmdt_range:
+
+        start_list = [i, i + 4, i + 12, i + 20, i + 36, i + 44, i + 52, i + 64, i + 68, i +76, i + 84, i + 96, i + 100]
+
+        for x in start_list:
+
+            coll_inter = (((3 * x + 1) / 2) * 3 + 1) / 2
+
+            #conditions met to continue checking a number
+            while coll_inter >= x:
+
+                #collatz formula
+                if coll_inter % 2 == 1:
+                    coll_inter = (3 * coll_inter + 1) / 2
+                else:
+                    coll_inter = coll_inter / 2
+
+    #print number checked intermittently
+    if millions >= a:
+        print("Last Number Checked: " + str(z))
+        a += 3
+    else:
+        pass
+
+print("\nFinished Checking These Numbers. All went to 1.")
+
+t1 = time.time()
+time_diff = t1 - t0
+print(time_diff)
