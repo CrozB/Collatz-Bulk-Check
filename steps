@@ -1,0 +1,34 @@
+# import module
+
+import tabulate
+
+from tabulate import tabulate
+
+start_num = 255
+
+start_range = range(start_num,2000,256)
+
+table = []
+
+table_head = ["Starting #", "Steps", "Details"]
+
+def collatz(n):
+
+    steps_temp = []
+    z = n
+    while n >= z:
+
+        if n % 2 == 1:
+            n = 3 * n + 1
+            steps_temp.append(1)
+        else:
+            n = n / 2
+            steps_temp.append(0)
+
+    return steps_temp
+
+for i in start_range:
+    x = collatz(i)
+    table.append([i,len(x),x])
+
+print(tabulate(table, headers=table_head, tablefmt="grid"))
