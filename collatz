@@ -8,9 +8,9 @@ start_num = int(input("Start Number: "))
 
 end_num = int(input("End Number: "))
 
-increment = 128
+increment = 256
 
-start_num = (start_num - start_num % 128) + 27
+start_num = (start_num - start_num % 256) + 27
 
 scale = 10000
 
@@ -27,7 +27,7 @@ for z in start_range:
     #for loop for checking all numbers in range
     for i in intrmdt_range:
 
-        start_list = [i, i + 4, i + 12, i + 20, i + 36, i + 44, i + 52, i + 64, i + 68, i +76, i + 84, i + 96, i + 100]
+        start_list = [i, i + 4, i + 20, i + 36, i + 44, i + 64, i +76, i + 84, i + 100, i + 128, i + 132, i + 140, i + 164, i + 180, i + 196, i + 204, i + 212, i + 224, i + 228]
 
         for x in start_list:
 
