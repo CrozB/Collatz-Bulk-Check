@@ -8,26 +8,31 @@ start_num = int(input("Start Number: "))
 
 end_num = int(input("End Number: "))
 
-increment = 256
+increment = 1024
 
-start_num = (start_num - start_num % 256) + 27
+start_num = start_num - start_num % increment
 
 scale = 10000
 
-start_range = range(start_num, end_num+2, increment*scale)
+mod_check = [27, 31, 47, 63, 71, 91, 103, 111, 127, 155, 159, 167, 191, 207, 223, 231, 239, 251, 255,
+             283, 303, 319, 327, 359, 383, 411, 415, 447, 463, 479, 487, 495, 511,
+             539, 543, 559, 603, 615, 623, 639, 667, 671, 679, 703, 719, 743, 751, 763, 767,
+             795, 799, 831, 839, 859, 871, 879, 895, 927, 935, 959, 991, 1007, 1019, 1023]
 
-a = start_num // (scale*100)
+start_range = range(start_num, end_num+1, increment*scale)
+
+a = start_num // (scale*1000)
 
 for z in start_range:
 
     intrmdt_range = range(z, z + increment * (scale-1), increment)
 
-    millions = z // (scale*100)
+    millions = z // (scale*1000)
 
     #for loop for checking all numbers in range
     for i in intrmdt_range:
 
-        start_list = [i, i + 4, i + 20, i + 36, i + 44, i + 64, i +76, i + 84, i + 100, i + 128, i + 132, i + 140, i + 164, i + 180, i + 196, i + 204, i + 212, i + 224, i + 228]
+        start_list = [d+i for d in mod_check]
 
         for x in start_list:
 
@@ -45,12 +50,11 @@ for z in start_range:
     #print number checked intermittently
     if millions >= a:
         print("Last Number Checked: " + str(z))
-        a += 3
+        a += 1
     else:
         pass
 
 print("\nFinished Checking These Numbers. All went to 1.")
 
 t1 = time.time()
-time_diff = t1 - t0
-print(time_diff)
+print(t1 - t0)
